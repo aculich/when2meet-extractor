@@ -24,6 +24,9 @@ Drag the link above to your bookmarks bar or right-click the link above and add 
 - **Customizable Options:** Allows customization of the filename, CSV delimiter, and time format (12-hour or 24-hour).
 - **Direct CSV Download:** Automatically downloads the generated CSV file to your device.
 
+## Problems or Feature Requests?
+Add a [new issue](https://github.com/aculich/when2meet-extractor/issues) or check out the [github repo](https://github.com/aculich/when2meet-extractor/) and [submit a pull request](https://github.com/aculich/when2meet-extractor/pulls).
+
 ## How to Use
 
 1. **Open the When2Meet page** where you want to export the availability data.
