@@ -32,7 +32,7 @@ Add a [new issue](https://github.com/aculich/when2meet-extractor/issues) or chec
 1. **Open the When2Meet page** where you want to export the availability data.
 2. **Run from bookmarklet** by clicking on it in your bookmarks bar after you have added the link above to your bookmarks.
 2. **Or optionally, for more customization, open the browser's developer console:**
-   - On most browsers, press `F12` or `Ctrl + Shift + I` (Windows/Linux) or `Cmd + Option + I` (Mac).
+   - On most browsers, press `F12` or `Ctrl + Shift + J` (Windows/Linux) or `Cmd + Option + J` (Mac).
 3. **Copy and paste the code** from `export_when2meet.js` into the browser's developer console. In Chrome, you may need to first type `allow pasting` before you can copy & paste or drag the file into the console.
 4. **Press Enter** to run the script as: `downloadCSV()`
 5. The CSV file named `when2meet_UNIQUECODE_TIMESTAMP.csv` will automatically download to your device, where `UNIQUECODE` is extracted from the URL and `TIMESTAMP` is the current date and time, so for example `when2meet_24892637-Evxyx_2024-05-20_133456.csv` would be the download file from https://www.when2meet.com/?24892637-Evxyx
