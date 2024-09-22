@@ -1,3 +1,11 @@
+// This script is designed to make exporting data from When2Meet simpler and more efficient, 
+// saving you time and effort in organizing participant availability data from a When2Meet page into a CSV file. 
+// It combines the best features from various community contributions (originally from [camtheman256](https://gist.github.com/camtheman256/3125e18ba20e90b6252678714e5102fd)) into a single, easy-to-use tool.
+//
+// and while you can load this into the javascript console and run it, it's designed to be run as a bookmarklet.
+// To use as a bookmarklet, visit the page with the When2Meet, drag the link above to your bookmarks bar, 
+// and then click it when you want to export the data.
+
 function getCSV({ delimiter = ",", timeFormat = "12-hour" } = {}) {
     if ([PeopleNames, PeopleIDs, AvailableAtSlot, TimeOfSlot].some(v => !Array.isArray(v) || v.length === 0)) {
         console.error("Error: One or more required variables (PeopleNames, PeopleIDs, AvailableAtSlot, TimeOfSlot) are undefined or empty.");
