@@ -6,6 +6,14 @@
 // To use as a bookmarklet, visit the page with the When2Meet, drag the link above to your bookmarks bar, 
 // and then click it when you want to export the data.
 
+function convertTo24HourFormat(time12h) {
+    const [time, modifier] = time12h.split(' ');
+    let [hours, minutes, seconds] = time.split(':');
+    if (hours === '12') { hours = '00'; }
+    if (modifier === 'PM') { hours = parseInt(hours, 10) + 12; }
+    return `${hours}:${minutes}:${seconds}`;
+}
+
 function getCSV({ delimiter = ",", timeFormat = "12-hour" } = {}) {
     if ([PeopleNames, PeopleIDs, AvailableAtSlot, TimeOfSlot].some(v => !Array.isArray(v) || v.length === 0)) {
         console.error("Error: One or more required variables (PeopleNames, PeopleIDs, AvailableAtSlot, TimeOfSlot) are undefined or empty.");
@@ -14,15 +22,19 @@ function getCSV({ delimiter = ",", timeFormat = "12-hour" } = {}) {
 
     let result = `Day${delimiter}Time${delimiter}` + PeopleNames.join(delimiter) + "\n"; 
     for (let i = 0; i < AvailableAtSlot.length; i++) {
-        let slot = new Date(TimeOfSlot[i] * 1000);
+        let slotExpr = `//div[@id='GroupTime${TimeOfSlot[i]}']/@onmouseover`;
+        let slotMatch = document.evaluate(slotExpr, document, null, XPathResult.STRING_TYPE, null).stringValue.match(/.*"(.*)".*/);
+        let slot = slotMatch ? slotMatch[1] : null;
         if (!slot) {
             console.error(`Error: Could not retrieve or format time slot for index ${i}.`);
             continue;
         }
 
         // Format the day and time
-        let day = slot.toLocaleDateString('en-US', { weekday: 'short' });
-        let time = slot.toLocaleTimeString('en-US', { hour12: timeFormat === "12-hour", hour: '2-digit', minute: '2-digit' });
+        let [day, time] = slot.split(" ");
+        if (timeFormat === "24-hour") {
+            time = convertTo24HourFormat(time);
+        }
 
         result += `${day}${delimiter}${time}${delimiter}`;
         
